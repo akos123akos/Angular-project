@@ -1,0 +1,14 @@
+.app-root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+
+.app-header-account-details {
+  display: flex;
+  gap: 1rem;
+}
