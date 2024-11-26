@@ -4,7 +4,7 @@ import { Course } from '@app/models/course.model';
 
 export const coursesFeatureKey = 'courses';
 
-// Add your code here
+
 
 export interface CoursesState {
     allCourses: Course[];
@@ -13,7 +13,7 @@ export interface CoursesState {
     isSingleCourseLoading: boolean;
     isSearchState: boolean;
     errorMessage: Error | null;
-    // Add your code here
+    
 }
 
 export const initialState: CoursesState = {
@@ -23,7 +23,7 @@ export const initialState: CoursesState = {
     isSingleCourseLoading: false,
     isSearchState: false,
     errorMessage: null,
-    // Add your code here
+    
 };
 
 export const coursesReducer = createReducer(
@@ -66,7 +66,7 @@ export const coursesReducer = createReducer(
 
     on(CoursesActions.requestFilteredCoursesSuccess, (state, { courses }) => ({
         ...state,
-        allCourses: courses, // or wherever you want to store the filtered result
+        allCourses: courses,
     })),
 
     on(CoursesActions.requestDeleteCourseSuccess, (state) => ({
@@ -98,6 +98,6 @@ export const coursesReducer = createReducer(
         errorMessage: error
     }))
 
-); // Add your code here
+); 
 
 export const reducer = (state: CoursesState, action: Action): CoursesState => coursesReducer(state, action);

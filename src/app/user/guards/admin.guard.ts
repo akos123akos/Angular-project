@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class AdminGuard implements CanActivate {
 
     constructor( private userStoreService: UserStoreService, private router: Router) {}
-    // Add your code here
+    
     canActivate(): Observable<boolean | UrlTree> | boolean | UrlTree {
         if(this.userStoreService.isAdmin) {
             return true;

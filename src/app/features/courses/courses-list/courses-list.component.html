@@ -1,4 +1,5 @@
 <app-search placeholder="Search courses" (search)="onSearch($event)"></app-search>
+<p *ngIf="noResult" class="warning-text">There were no matching results with the given parameters, please try searching agian!</p>
 <div class="courses-list">
     <app-course-card *ngFor="let course of courses"
     [title]="course.title" 
@@ -10,5 +11,5 @@
     [id]="course.id"
     (clickOnShow)="navigateToCourse($event)">    
     </app-course-card>
-    <app-button *ngIf="editable" buttonText="Add course" routerLink="/courses/add"></app-button>
+    <app-button *ngIf="editable" buttonText="Add course" (click)="navigateToAddCourse()"></app-button>
 </div>

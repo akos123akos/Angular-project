@@ -1,6 +1,5 @@
 <div class="course-card" >
   <div class="course-card__description">
-    <!-- Replace ::text:: with your code -->
     <div class="course-card__description-title">{{ title }}</div>
     <div class="course-card__description-text">{{ description }}</div>
   </div>
@@ -8,15 +7,15 @@
       <div class="course-card__info-text">
           <div>
             <b>Authors: </b>
-            {{ authors }}
+            {{ authors | authorNamePipe | async}}
           </div>
-          <div><b>Duration: </b><span class="course-card__duration">{{ duration | duration }} hours</span></div>
-          <div><b>Created: </b><span class="course-card__date">{{ creationDate | customDate }}</span></div>
+          <div><b>Duration: </b><span class="course-card__duration">{{ duration | durationPipe }} hours</span></div>
+          <div><b>Created: </b><span class="course-card__date">{{ creationDate }}</span></div>
       </div>
       <div class="course-card__info-actions">
           <app-button buttonText="Show Course" (click)="showCourse()" routerLink="/courses/:id"></app-button>
           <div class="course-card__buttons" *ngIf="editable">
-            <app-button [iconName]="['fas', 'trash-can']"></app-button>
+            <app-button [iconName]="['fas', 'trash-can']" (click)="deleteCourse()"></app-button>
             <app-button [iconName]="['fas', 'pencil']" (click)="editCourse()"></app-button>
           </div>
       </div>

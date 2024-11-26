@@ -2,10 +2,15 @@ import { NgModule } from '@angular/core';
 //routing
 import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
+import { FallbackComponent } from './shared/components/fallback/fallback.component';
 import { RegistrationFormComponent } from './shared/components/registration-form/registration-form.component';
+import { CoursesListComponent } from './features/courses/courses-list/courses-list.component';
+import { CourseFormComponent } from './shared/components';
+import { CourseInfoComponent } from './features/course-info/course-info.component';
 import { NotAuthorizedGuard } from './auth/guards/not-authorized.guard';
 import { AuthorizedGuard } from './auth/guards/authorized.guard';
 import { AdminGuard } from './user/guards/admin.guard';
+
 
 
 export const routes: Routes = [
@@ -21,35 +26,32 @@ export const routes: Routes = [
     },
     {
         path: 'courses',
-        loadChildren: () => import('./features/courses/courses-list/courses-list.module').then(m => m.CoursesListModule),
-        canLoad: [AuthorizedGuard]
-    },
-    {
-        path: 'courses/:id',
-        loadChildren: () => import('./features/course-info/course-info.module').then(m => m.CourseInfoModule),
-        canLoad: [AuthorizedGuard]
+        component: CoursesListComponent,
+        canActivate: [AuthorizedGuard],
     },
     {
         path: 'courses/add',
-        loadChildren: () => import('./features/courses/courses.module').then(m => m.CoursesModule),
-        canLoad: [AuthorizedGuard],
-        canActivate: [AdminGuard]
+        component: CourseFormComponent,
+        canActivate: [AuthorizedGuard, AdminGuard]
+    },
+    {
+        path: 'courses/:id',
+        component: CourseInfoComponent,
+        canActivate: [AuthorizedGuard],
     },
     {
         path: 'courses/edit/:id',
-        loadChildren: () => import('./features/courses/courses.module').then(m => m.CoursesModule),
-        canLoad: [AuthorizedGuard],
-        canActivate: [AdminGuard]
+        component: CourseFormComponent,
+        canActivate: [AdminGuard, AuthorizedGuard]
     },
     {
         path: '',
-        redirectTo: 'courses',
+        redirectTo: 'login',
         pathMatch: 'full'
     },
     {
         path: '**',
-        redirectTo: 'courses',
-        pathMatch: 'full'
+        component: FallbackComponent
     }
 ];
 

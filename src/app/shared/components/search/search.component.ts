@@ -15,8 +15,5 @@ export class SearchComponent {
       this.search.emit(this.userSearchInput || '')
   }
 
-  
-  // Use the name `placeholder` for the @Input.
-  // Use the name `search` for the @Output.
 }
 

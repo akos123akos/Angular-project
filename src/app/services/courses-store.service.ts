@@ -29,32 +29,32 @@ export class CoursesStoreService {
                 this.setLoading(false);
       })
     ).subscribe();
-        // Add your code here
+        
     }
 
-    createCourse(course: Course): void { // replace 'any' with the required interface
+    createCourse(course: Course): void { 
         this.setLoading(true);
         this.coursesService.createCourse(course).pipe(
           tap(() => {
             this.getAll();
           })
         ).subscribe();
-        // Add your code here
+        
     }
 
     getCourse(id: string): Observable<any> {
-        // Add your code here
+        
         return this.coursesService.getCourse(id)
     }
 
-    editCourse(id: string, course: Course): void { // replace 'any' with the required interface
+    editCourse(id: string, course: Course): void { 
         this.setLoading(true);
         this.coursesService.editCourse(id, course).pipe(
             tap(() => {
                 this.getAll();
       })
     ).subscribe();
-        // Add your code here
+        
     }
 
     deleteCourse(id: string): void {
@@ -64,7 +64,7 @@ export class CoursesStoreService {
                 this.getAll()
             })
         ).subscribe();
-        // Add your code here
+        
     }
 
     filterCourses(value: string): void {
@@ -75,7 +75,7 @@ export class CoursesStoreService {
                 this.setLoading(false);
             })
         ).subscribe();
-        // Add your code here
+        
     }
 
     getAllAuthors(): void {
@@ -85,7 +85,7 @@ export class CoursesStoreService {
                 this.setLoading(false);
             })
         ).subscribe()
-        // Add your code here
+        
     }
 
     createAuthor(name: string): void {
@@ -95,11 +95,11 @@ export class CoursesStoreService {
                 this.getAllAuthors();
             })
         ).subscribe()
-        // Add your code here
+        
     }
 
     getAuthorById(id: string): Observable<any> {
         return this.coursesService.getAuthorById(id)
-        // Add your code here
+        
     }
 }

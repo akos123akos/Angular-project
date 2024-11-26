@@ -9,12 +9,13 @@ import {
   SearchComponent,
   CourseCardComponent,
   LoginFormComponent,
-  RegistrationFormComponent,
+  RegistrationFormComponent
 } from "./components";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DurationPipe } from './pipes/duration.pipe';
-import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { AuthorNamePipe } from './pipes/authorNames.pipe';
 import { EmailValidatorDirective } from '@shared/directives/email.directive';
+import { FallbackComponent } from './components/fallback/fallback.component';
 // import { TogglePasswordDirective } from '@shared/directives/toggle-password.directive';
 
 const components = [
@@ -26,11 +27,12 @@ const components = [
   CourseCardComponent,
   LoginFormComponent,
   RegistrationFormComponent,
+  FallbackComponent
 ];
 
 const pipes = [
   DurationPipe,
-  CustomDatePipe
+  AuthorNamePipe
 ]
 
 const directives = [
@@ -39,7 +41,7 @@ const directives = [
 ]
 
 @NgModule({
-  declarations: [...components, ...pipes, ...directives ],
+  declarations: [...components, ...pipes, ...directives],
   imports: [
     CommonModule,
     FontAwesomeModule,

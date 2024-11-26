@@ -1,5 +1,5 @@
 <div class="app-header">
-  <img alt="logo" src="assets/logo.svg">
+  <a class="app-header__img-link" (click)="home()"><img alt="logo" src="assets/logo.svg"></a>
   <ng-content></ng-content>
   <div class="app-header-account-details">
     <p *ngIf="isLoggedIn">{{ userName }}</p>

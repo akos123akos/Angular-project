@@ -23,16 +23,13 @@ export class UserStoreService {
                 this.isAdmin$$.next(user.result.role === 'admin')
             })
         ).subscribe();
-        // Add your code here
     }
 
     get isAdmin(): boolean {
-        // Add your code here. Get isAdmin$$ value
         return this.isAdmin$$.value
     }
 
     set isAdmin(value: boolean) {
         this.isAdmin$$.next(value)
-        // Add your code here. Change isAdmin$$ value
     }
 }

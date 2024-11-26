@@ -13,6 +13,6 @@ export class UserService {
 
     getUser(): Observable<any> {
         return this.http.get(`${this.apiUrl}/users/me`)
-        // Add your code here
+        
     }
 }

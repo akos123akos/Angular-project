@@ -1,4 +1,3 @@
-<!-- Replace ::text:: with your code -->
 <h2>Create / Edit Course</h2>
 <form [formGroup]="courseForm">
   <div class="app-plate">
@@ -6,13 +5,11 @@
       <h3>Main Info</h3>
       <div class="form__control">
         <label for="title">Title</label>
-        <!--Use the name `title` for the form control.-->
         <input type="text" id="title" placeholder="Input text" formControlName="title"/>
         <span *ngIf="courseForm.get('title')?.invalid && courseForm.get('title')?.touched" id="titleErrorMessage" class="text-danger">Title is required and must be at least 2 characters.</span>
       </div>
       <div class="form__control">
         <label for="description">Description</label>
-        <!--Use the name `description` for the form control.-->
         <textarea
           id="description"
           name="description"
@@ -27,10 +24,9 @@
       <h3>Duration</h3>
       <div class="form__control">
         <div class="course__flex">
-          <!--Use the name `duration` for the form array.-->
           <input type="number" id="duration" placeholder="Input duration" formControlName="duration"/>
           <div class="course__duration">
-            {{ courseForm.get('duration')?.value | duration }} hours
+            {{ courseForm.get('duration')?.value | durationPipe }} hours
           </div>
         </div>
         <span *ngIf="courseForm.get('duration')?.invalid && courseForm.get('duration')?.touched" id="durationErrorMessage" class="text-danger">Duration is required and must be greater than 0.</span>
@@ -39,7 +35,6 @@
       <h3>Authors</h3>
       <div class="form__control">
         <div class="course__flex">
-          <!--Use the name `author` for the form control.-->
           <input type="text" id="author" placeholder="Input Author Name" formControlName="author"/>
           <app-button id="createAuthor" buttonText="Create author" (click)="createAuthor()"></app-button>
         </div>
@@ -51,22 +46,22 @@
           <li *ngFor="let author of availableAuthors">
             {{ author.name }}
             <app-button [iconName]="['fas', 'plus']" (click)="addAuthorToCourse(author)"></app-button>
+            <app-button [iconName]="['fas', 'trash-can']" (click)="deleteAuthor(author.id)"></app-button>
           </li>
         </ul>
       </div>
       <div class="course__authors">
         <h4>Course Authors:</h4>
-        <!--Use the name `authors` for the form array.-->
         <ul>
           <li *ngFor="let author of authors.controls; let i = index">
             {{ author.value.name }}
-            <app-button [iconName]="['fas', 'trash-can']" (click)="removeAuthorFromCourse(i)"></app-button>
+            <app-button [iconName]="['fas', 'minus']" (click)="removeAuthorFromCourse(i)"></app-button>
           </li>
         </ul>
         <p *ngIf="authors.length === 0">Author list is empty</p>
       </div>
       <div class="form__action course-form__buttons">
-        <app-button buttonText="cancel" routerLink="/courses"></app-button>
+        <app-button buttonText="cancel" (click)="navigateToCourses()"></app-button>
         <app-button [buttonText]="buttonText" (click)="onSubmit()"></app-button>
       </div>
     </div>

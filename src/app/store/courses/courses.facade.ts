@@ -13,7 +13,7 @@ import { Course } from '@app/models/course.model';
     providedIn: 'root'
 })
 export class CoursesStateFacade {
-    // Add your code here
+    
 
     isAllCoursesLoading$: Observable<boolean> = this.store.pipe(
         select(fromCoursesSelectors.isAllCoursesLoadingSelector)

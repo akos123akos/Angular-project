@@ -114,8 +114,5 @@ export class CoursesEffects {
         ),
         { dispatch: false }
     )
-
-
-
-    // Add your code here
+    
 }

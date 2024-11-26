@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, UrlSegment, Router, UrlTree } from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorizedGuard implements CanLoad {
+export class AuthorizedGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]
-  ): boolean | UrlTree | Observable<boolean | UrlTree> {
+  canActivate(): boolean | UrlTree | Observable<boolean | UrlTree> {
     if (this.authService.isAuthorised) {
       return true;
     } else {
@@ -21,3 +18,4 @@ export class AuthorizedGuard implements CanLoad {
     }
   }
 }
+

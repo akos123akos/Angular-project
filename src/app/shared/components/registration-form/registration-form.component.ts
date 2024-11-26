@@ -53,5 +53,7 @@ export class RegistrationFormComponent {
     }
   }
 
-  // Use the names `name`, `email`, `password` for the form controls.
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
 }

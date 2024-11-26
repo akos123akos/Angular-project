@@ -17,7 +17,7 @@ export class AuthService {
         private sessionStorageService: SessionStorageService,
     ) {}
 
-    login(user: {email: string, password: string}): Observable<any> { // replace 'any' with the required interface
+    login(user: {email: string, password: string}): Observable<any> { 
         return this.http.post<any>(`${this.apiUrl}/login`, user)
             .pipe(tap(response => {
                 if (response.result) {
@@ -25,13 +25,13 @@ export class AuthService {
                     this.isAuthorised = true
                 }
             }))
-        // Add your code here
+        
     }
 
     logout(): void {
         this.sessionStorageService.deleteToken();
         this.isAuthorised = false;
-        // Add your code here
+        
     }
 
     register(user: { name: string; email: string; password: string }): Observable<any> {
@@ -47,16 +47,14 @@ export class AuthService {
 
     get isAuthorised(): boolean {
         return this.isAuthorized$$.value
-        // Add your code here. Get isAuthorized$$ value
     }
 
     set isAuthorised(value: boolean) {
         this.isAuthorized$$.next(value)
-        // Add your code here. Change isAuthorized$$ value
     }
 
     getLoginUrl(): string {
         return `${this.apiUrl}/login`;
-        // Add your code here
+        
     }
 }

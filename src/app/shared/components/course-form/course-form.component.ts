@@ -69,6 +69,7 @@ export class CourseFormComponent implements OnInit {
 
         this.coursesService.getAllAuthors().subscribe(allAuthors => {
           this.availableAuthors = allAuthors.result;
+          console.log(course.authors)
           course.authors.forEach((authorId: string) => {
             const author = allAuthors.result.find((a: any) => a.id === authorId);
             if (author) {
@@ -118,6 +119,21 @@ export class CourseFormComponent implements OnInit {
     }
   }
 
+  deleteAuthor(authorId: string): void {
+    if (confirm(`Deleteing the author might modify existing courses. Are you sure you want to continue?`)){
+      this.coursesService.deleteAuthor(authorId).subscribe(
+        () => {
+          this.availableAuthors = this.availableAuthors.filter(author => author.id !== authorId);
+          console.log(`Author with ID ${authorId} deleted successfully.`);
+        },
+        (error: any) => {
+          console.error('Error deleting author:', error);
+        }
+      );
+
+    }
+  }
+
   onSubmit() {
     if (this.courseForm.valid) {
         const formData = { ...this.courseForm.value };
@@ -147,5 +163,8 @@ export class CourseFormComponent implements OnInit {
     }
     }
   }
-  // Use the names `title`, `description`, `author`, 'authors' (for authors list), `duration` for the form controls.
+
+  navigateToCourses() {
+    this.router.navigate(['/courses']);
+  }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoursesComponent } from './courses.component';
+import { FallbackComponent } from './fallback.component';
 
-describe('CoursesComponent', () => {
-  let component: CoursesComponent;
-  let fixture: ComponentFixture<CoursesComponent>;
+describe('FallbackComponent', () => {
+  let component: FallbackComponent;
+  let fixture: ComponentFixture<FallbackComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoursesComponent ]
+      declarations: [ FallbackComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CoursesComponent);
+    fixture = TestBed.createComponent(FallbackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

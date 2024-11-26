@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-    name: 'duration'
+    name: 'durationPipe'
 })
 export class DurationPipe implements PipeTransform{
 
@@ -20,5 +20,5 @@ export class DurationPipe implements PipeTransform{
     private pad(num: number): string {
         return num < 10 ? '0' + num : num.toString();
       }
-    // Add your code here
+    
 }

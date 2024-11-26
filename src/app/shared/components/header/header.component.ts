@@ -53,4 +53,8 @@ export class HeaderComponent{
     this.router.navigate(['/login']);
     console.log(this.userService.getUser())    
   }
+
+  home(): void {
+    this.router.navigate(['/courses'])
+  }
 }

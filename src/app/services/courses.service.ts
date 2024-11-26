@@ -12,31 +12,25 @@ export class CoursesService {
     constructor(private http: HttpClient){}
 
     getAll(): Observable<any> {
-        return this.http.get(`${this.apiUrl}/courses/all`);
-        // Add your code here
+        return this.http.get(`${this.apiUrl}/courses/all`); 
     }
 
-    createCourse(course: Course): Observable<Course> { // replace 'any' with the required interface
+    createCourse(course: Course): Observable<Course> { 
         return this.http.post<Course>(`${this.apiUrl}/courses/add`, course)
-        // Add your code here
     }
 
-    editCourse(id: string, course: Course): Observable<Course> { // replace 'any' with the required interface
+    editCourse(id: string, course: Course): Observable<Course> { 
         return this.http.put<Course>(`${this.apiUrl}/courses/${id}`, course)
-        // Add your code here
     }
 
     getCourse(id: string): Observable<any> {
         return this.http.get(`${this.apiUrl}/courses/${id}`)
-        // Add your code here
     }
 
     deleteCourse(id: string): Observable<any> {
-        return this.http.delete(`${this.apiUrl}/courses/${id}`)
-        // Add your code here
+        return this.http.delete(`${this.apiUrl}/courses/${id}`) 
     }
 
-    
     filterCourses(value: string): Observable<any> {
         const makeRequest = (paramName: string): Observable<any> => {
             const params: any = {};
@@ -49,22 +43,21 @@ export class CoursesService {
             switchMap(response => response.result.length ? of(response) : makeRequest('duration')),
             switchMap(response => response.result.length ? of(response) : makeRequest('creationDate')),
         );
-        // Add your code here */
     }
         
-   
     getAllAuthors(): Observable<any> {
         return this.http.get(`${this.apiUrl}/authors/all`);
-        // Add your code here
     }
 
     createAuthor(name: string): Observable<any> {
         return this.http.post(`${this.apiUrl}/authors/add`, { name });
-        // Add your code here
+    }
+
+    deleteAuthor(authorId: string): Observable<any> {
+        return this.http.delete(`${this.apiUrl}/authors/${authorId}`)
     }
 
     getAuthorById(id: string): Observable<any> {
         return this.http.get(`${this.apiUrl}/authors/${id}`)
-        // Add your code here
     }
 }

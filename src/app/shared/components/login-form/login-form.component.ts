@@ -12,7 +12,6 @@ export class LoginFormComponent {
   @ViewChild("loginForm") public loginForm!: NgForm;
 
   constructor ( private authService: AuthService, private router: Router ) {}
-  //Use the names `email` and `password` for form controls.
   email: string = "";
   password: string = "";
 
@@ -32,5 +31,9 @@ export class LoginFormComponent {
       console.log('Invalid form');
       form.form.markAllAsTouched();
     }
+  }
+
+  navigateToRegistration() {
+    this.router.navigate(['/registration']);
   }
 }

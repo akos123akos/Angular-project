@@ -16,12 +16,8 @@ export class CoursesListComponent implements OnInit{
   authors: any[] = []
 
   @Input() editable: boolean = false;
-  /* 
-  unused code from previous exercise:
-  @Output() showCourse = new EventEmitter<any>();
-  @Output() editCourse = new EventEmitter<any>();
-  @Output() deleteCourse = new EventEmitter<any>();
- */
+  noResult: boolean = false
+
   constructor( private coursesFacade: CoursesStateFacade, private coursesService: CoursesService, private userStoreService: UserStoreService, private router: Router) {}
   
 
@@ -34,40 +30,24 @@ export class CoursesListComponent implements OnInit{
     this.coursesFacade.allCourses$.subscribe(
       courses => {
         this.courses = courses;
-      });
-
-      this.coursesFacade.getAllCourses();
-  }
-
-  /* 
-  unused code from previous exercise: author name display
-  
-  fetchAuthorsAndMap(): void {
-    this.coursesService.getAllAuthors().subscribe(
-      authorResponse => {
-        this.authors = authorResponse.result;
-        this.mapAuthorsToCourses();
-      },
-      error => {
-        console.log('Error fetching authors:', error);
-      }
-    );
-  }
-
-  mapAuthorsToCourses(): void {
-    this.courses.forEach(course => {
-      course.authors = course.authors.map((authorId: any) => {
-        const author = this.authors.find(a => a.id === authorId);
-        return author ? author.name : 'Unknown Author';
-      });
     });
-  } */
 
+    this.coursesFacade.getAllCourses();
+  }
+  
   onSearch(value: string): void {
     this.coursesFacade.getFilteredCourses(value);
+    this.coursesFacade.courses$.subscribe(courses => {
+      this.noResult = courses.length === 0;
+    });
   }
 
   navigateToCourse(courseId: any): void {
     this.router.navigate([`courses/${courseId}`]);
   }
+
+  navigateToAddCourse() {
+    this.router.navigate(['/courses/add']);
+  }
+
 }
